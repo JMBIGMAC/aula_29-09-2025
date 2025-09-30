@@ -34,11 +34,40 @@ Um sistema completo de gerenciamento de biblioteca desenvolvido em Flask com SQL
 
 ## 🗃️ Estrutura do Banco de Dados
 
+
+## 🗺️ Diagrama Entidade-Relacionamento (DER) Simplificado
+
+```mermaid
+erDiagram
+   USUARIOS {
+      INTEGER id PK
+      TEXT nome
+      TEXT email
+      TEXT senha
+   }
+   LIVROS {
+      INTEGER id PK
+      TEXT titulo
+      TEXT autor
+      INTEGER ano
+      INTEGER disponivel
+   }
+   EMPRESTIMOS {
+      INTEGER id PK
+      INTEGER id_usuario FK
+      INTEGER id_livro FK
+      TEXT data_emprestimo
+      TEXT data_devolucao
+   }
+   USUARIOS ||--o{ EMPRESTIMOS : "realiza"
+   LIVROS ||--o{ EMPRESTIMOS : "é emprestado em"
+```
+
 ### Tabela: usuarios
-- `id` (INTEGER PRIMARY KEY)
-- `nome` (TEXT NOT NULL)
-- `email` (TEXT UNIQUE NOT NULL)
-- `senha` (TEXT NOT NULL)
+* `id` (INTEGER PRIMARY KEY)
+* `nome` (TEXT NOT NULL)
+* `email` (TEXT UNIQUE NOT NULL)
+* `senha` (TEXT NOT NULL)
 
 ### Tabela: livros
 - `id` (INTEGER PRIMARY KEY)
