@@ -1,5 +1,10 @@
 # Database files
 users.db
+database.db
+
+# Temporary files
+cookies.txt
+/tmp/
 
 # Python cache
 __pycache__/
