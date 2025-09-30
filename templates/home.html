@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Simple Flask App{% endblock %}
+
+{% block content %}
+<div class="welcome">
+    <h1>Welcome, {{ username }}!</h1>
+    <p>You have successfully logged in to the Simple Flask App.</p>
+</div>
+
+<div class="nav-links">
+    <a href="{{ url_for('logout') }}" class="logout-btn" style="background-color: #dc3545; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Logout</a>
+</div>
+
+<div style="margin-top: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 5px;">
+    <h3>About this app</h3>
+    <p>This is a simple Flask application with:</p>
+    <ul>
+        <li>User registration (signup)</li>
+        <li>User authentication (login)</li>
+        <li>Session management</li>
+        <li>SQLite database for user storage</li>
+        <li>Password hashing for security</li>
+    </ul>
+</div>
+{% endblock %}
