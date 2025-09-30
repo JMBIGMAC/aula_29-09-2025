@@ -1,0 +1,25 @@
+# Database files
+users.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Flask instance folder
+instance/
+
+# pytest cache
+.pytest_cache/
