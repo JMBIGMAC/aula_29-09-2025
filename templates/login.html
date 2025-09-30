@@ -1,24 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Login - Simple Flask App{% endblock %}
+{% block title %}Login - Sistema Biblioteca Comunitária{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
+<h2>Login - Biblioteca Comunitária</h2>
 <form method="POST">
     <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
     </div>
     
     <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
     </div>
     
-    <button type="submit">Login</button>
+    <button type="submit">Entrar</button>
 </form>
-
-<div class="nav-links">
-    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
-</div>
 {% endblock %}

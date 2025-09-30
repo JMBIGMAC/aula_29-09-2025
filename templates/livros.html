@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Livros - Biblioteca{% endblock %}
+
+{% block content %}
+<h2>Gerenciar Livros</h2>
+
+<div class="nav-links">
+    <a href="{{ url_for('index') }}">← Voltar ao Menu Principal</a>
+    <a href="{{ url_for('novo_livro') }}" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-left: 10px;">+ Novo Livro</a>
+</div>
+
+<div style="margin-top: 30px;">
+    {% if livros %}
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr style="background-color: #f8f9fa;">
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">ID</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Título</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Autor</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Ano</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Disponível</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">{{ livro.id }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">{{ livro.titulo }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">{{ livro.autor }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ livro.ano or '-' }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        {% if livro.disponivel %}
+                            <span style="color: green;">✓ Sim</span>
+                        {% else %}
+                            <span style="color: red;">✗ Não</span>
+                        {% endif %}
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        <a href="{{ url_for('editar_livro', id=livro.id) }}" style="background-color: #ffc107; color: black; padding: 5px 10px; text-decoration: none; border-radius: 3px; margin-right: 5px;">Editar</a>
+                        <a href="{{ url_for('excluir_livro', id=livro.id) }}" style="background-color: #dc3545; color: white; padding: 5px 10px; text-decoration: none; border-radius: 3px;" onclick="return confirm('Tem certeza que deseja excluir este livro?')">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum livro cadastrado.</p>
+    {% endif %}
+</div>
+{% endblock %}
