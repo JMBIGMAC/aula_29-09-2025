@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Usuário - Biblioteca{% endblock %}
+
+{% block content %}
+<h2>Editar Usuário</h2>
+
+<div class="nav-links">
+    <a href="{{ url_for('usuarios') }}">← Voltar para Usuários</a>
+</div>
+
+<form method="POST" style="margin-top: 30px;">
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ usuario.nome }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ usuario.email }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="senha">Nova Senha (deixe em branco para manter a atual):</label>
+        <input type="password" id="senha" name="senha">
+    </div>
+    
+    <button type="submit">Atualizar Usuário</button>
+</form>
+{% endblock %}

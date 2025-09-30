@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Empréstimos - Biblioteca{% endblock %}
+
+{% block content %}
+<h2>Gerenciar Empréstimos</h2>
+
+<div class="nav-links">
+    <a href="{{ url_for('index') }}">← Voltar ao Menu Principal</a>
+    <a href="{{ url_for('novo_emprestimo') }}" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-left: 10px;">+ Novo Empréstimo</a>
+</div>
+
+<div style="margin-top: 30px;">
+    {% if emprestimos %}
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr style="background-color: #f8f9fa;">
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">ID</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Usuário</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Livro</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Data Empréstimo</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Data Devolução</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Status</th>
+                    <th style="border: 1px solid #ddd; padding: 12px; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emprestimo in emprestimos %}
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">{{ emprestimo.id }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">{{ emprestimo.usuario_nome }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">{{ emprestimo.livro_titulo }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ emprestimo.data_emprestimo }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">{{ emprestimo.data_devolucao or '-' }}</td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        {% if emprestimo.data_devolucao %}
+                            <span style="color: green;">✓ Devolvido</span>
+                        {% else %}
+                            <span style="color: orange;">⏳ Ativo</span>
+                        {% endif %}
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
+                        {% if not emprestimo.data_devolucao %}
+                            <a href="{{ url_for('devolver_livro', id=emprestimo.id) }}" style="background-color: #28a745; color: white; padding: 5px 10px; text-decoration: none; border-radius: 3px;" onclick="return confirm('Confirma a devolução deste livro?')">Devolver</a>
+                        {% else %}
+                            <span style="color: #6c757d;">-</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum empréstimo registrado.</p>
+    {% endif %}
+</div>
+{% endblock %}

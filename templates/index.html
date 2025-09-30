@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Biblioteca Comunitária{% endblock %}
+
+{% block content %}
+<div class="welcome">
+    <h1>Bem-vindo, {{ usuario }}!</h1>
+    <p>Sistema de Controle de Empréstimos da Biblioteca Comunitária</p>
+</div>
+
+<div class="nav-links">
+    <a href="{{ url_for('logout') }}" class="logout-btn" style="background-color: #dc3545; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Logout</a>
+</div>
+
+<div style="margin-top: 30px;">
+    <h3>Gerenciamento</h3>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 15px;">
+            <a href="{{ url_for('usuarios') }}" style="display: inline-block; background-color: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; width: 200px; text-align: center;">👥 Gerenciar Usuários</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+            <a href="{{ url_for('livros') }}" style="display: inline-block; background-color: #28a745; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; width: 200px; text-align: center;">📚 Gerenciar Livros</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+            <a href="{{ url_for('emprestimos') }}" style="display: inline-block; background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 5px; width: 200px; text-align: center;">📋 Gerenciar Empréstimos</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
